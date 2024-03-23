@@ -1,10 +1,18 @@
 import fastify from 'fastify'
 import { ZodError } from 'zod'
 import { env } from './env'
+import fastifyJwt from '@fastify/jwt'
+import fastifyCookie from '@fastify/cookie'
 import { linksRoutes } from './http/controllers/links/routes'
 import { usersRoutes } from './http/controllers/users/routes'
 
 export const app = fastify()
+
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRET,
+})
+
+app.register(fastifyCookie)
 
 app.register(linksRoutes)
 
