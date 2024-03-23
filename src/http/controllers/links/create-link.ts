@@ -12,7 +12,9 @@ export async function createLink(req: FastifyRequest, rep: FastifyReply) {
 
   const linksRepository = new PrismaLinksRepository()
   const createLink = new CreateLinkUseCase(linksRepository)
-  const { link } = await createLink.execute({ url })
+
+  const userId = req.user?.sub
+  const { link } = await createLink.execute({ url, userId })
 
   return rep.status(201).send({ link })
 }

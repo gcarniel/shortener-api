@@ -12,6 +12,7 @@ export class PrismaLinksRepository implements LinksRepositoryInterface {
         code: data.code,
         url: data.url,
         shortUrl: data.shortUrl,
+        userId: data.userId || null,
       },
     })
   }

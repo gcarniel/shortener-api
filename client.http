@@ -3,13 +3,16 @@
 @host = {{hostname}}:{{port}}
 @contentType = application/json
 
+@bearer = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzkwMWNiNS1kNWY5LTQ5NGMtOTMyMy1hMGJmYzk5YTJhMjMiLCJpYXQiOjE3MTEyMTEzMDh9.KR9tMpInmbDJw7SVoYmysuxoUzt0efajo4abvpeCLNM
+
 @name = LINKS ROUTES
 ### Create Link
 POST http://{{host}}/api/links
 Content-Type: {{contentType}}
+Authorization: Bearer {{bearer}}
 
 {
-  "url": "https://vitest.dev/api/expect#not"
+  "url": "https://github.com/Huachao/vscode-restclient"
 }
 
 ### Visit Link
@@ -17,7 +20,7 @@ GET http://{{host}}/ee7214
 
 
 
-####################### SEPARA ROTAS 
+####################### SEPARA ROTAS ####################### 
 @name = USERS ROUTES
 
 ### Create User
@@ -26,6 +29,15 @@ Content-Type: {{contentType}}
 
 {
   "name": "Gabriel Carniel",
+  "email": "gabriel@fakeemail.com",
+  "password": "123456"
+}
+
+### Authenticate User
+POST http://{{host}}/api/auth
+Content-Type: {{contentType}}
+
+{
   "email": "gabriel@fakeemail.com",
   "password": "123456"
 }
