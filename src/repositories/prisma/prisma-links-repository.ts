@@ -2,6 +2,10 @@ import {
   ICreateLinkInput,
   ILink,
 } from '../../interfaces/links/create-link-interface'
+import {
+  PaginationParams,
+  PaginationResult,
+} from '../../interfaces/pagination-interface'
 import { prisma } from '../../lib/prisma'
 import { LinksRepositoryInterface } from '../interfaces/links-repository-interface'
 
@@ -39,5 +43,35 @@ export class PrismaLinksRepository implements LinksRepositoryInterface {
     })
 
     return count
+  }
+
+  async listLinksByUserId(
+    userId: string,
+    params: PaginationParams,
+  ): Promise<PaginationResult<ILink>> {
+    const { page = 1, pageSize = 10 } = params
+
+    const linksPromise = prisma.links.findMany({
+      where: {
+        userId,
+      },
+      take: pageSize,
+      skip: (page - 1) * pageSize,
+    })
+
+    const countPromise = prisma.links.count({
+      where: {
+        userId,
+      },
+    })
+
+    const [links, count] = await Promise.all([linksPromise, countPromise])
+
+    return {
+      page,
+      pages: Math.ceil(links.length / pageSize),
+      count,
+      data: links,
+    }
   }
 }

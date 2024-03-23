@@ -4,6 +4,10 @@ import {
   ILink,
 } from '../../interfaces/links/create-link-interface'
 import { LinksRepositoryInterface } from '../interfaces/links-repository-interface'
+import {
+  PaginationParams,
+  PaginationResult,
+} from '../../interfaces/pagination-interface'
 
 export class InMemoryLinksRepository implements LinksRepositoryInterface {
   items: ILink[] = []
@@ -46,5 +50,23 @@ export class InMemoryLinksRepository implements LinksRepositoryInterface {
     item.visits = visits
 
     return visits
+  }
+
+  async listLinksByUserId(
+    userId: string,
+    params: PaginationParams,
+  ): Promise<PaginationResult<ILink>> {
+    const { page = 1, pageSize = 10 } = params
+
+    const itemsByUserId = this.items.filter((item) => item.userId === userId)
+
+    const items = itemsByUserId.slice((page - 1) * pageSize, page * pageSize)
+
+    return {
+      page,
+      pages: Math.ceil(itemsByUserId.length / pageSize),
+      count: itemsByUserId.length,
+      data: items,
+    }
   }
 }

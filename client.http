@@ -18,6 +18,11 @@ Authorization: Bearer {{bearer}}
 ### Visit Link
 GET http://{{host}}/ee7214 
 
+### List links by user
+GET http://{{host}}/api/links?page=1&pageSize=10
+Authorization: Bearer {{bearer}}
+
+
 
 
 ####################### SEPARA ROTAS ####################### 
