@@ -1,0 +1,18 @@
+@hostname = localhost
+@port = 3333
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+
+### 
+@name = Create Link
+POST http://{{host}}/api/links
+Content-Type: {{contentType}}
+
+{
+  "url": "https://vitest.dev/api/expect#not"
+}
+
+###
+@name = Visit Link
+GET http://{{host}}/ee7214 
