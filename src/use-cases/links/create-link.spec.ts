@@ -17,8 +17,6 @@ describe('Create Link Use Case', () => {
       url: 'https://www.google.com',
     })
 
-    console.log(link)
-
     expect(link).toMatchObject({
       code: expect.any(String),
       url: 'https://www.google.com',
