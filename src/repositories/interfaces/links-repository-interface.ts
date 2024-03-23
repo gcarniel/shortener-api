@@ -15,4 +15,6 @@ export interface LinksRepositoryInterface {
     userId: string,
     params: PaginationParams,
   ): Promise<PaginationResult<ILink>>
+  deleteLink(id: string, userId: string): Promise<ILink | null>
+  findById(id: string, userId: string): Promise<ILink | null>
 }

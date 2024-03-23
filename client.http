@@ -16,12 +16,15 @@ Authorization: Bearer {{bearer}}
 }
 
 ### Visit Link
-GET http://{{host}}/ee7214 
+GET http://{{host}}/:code 
 
 ### List links by user
 GET http://{{host}}/api/links?page=1&pageSize=10
 Authorization: Bearer {{bearer}}
 
+### Delete link by user
+DELETE  http://{{host}}/api/links/:id
+Authorization: Bearer {{bearer}}
 
 
 

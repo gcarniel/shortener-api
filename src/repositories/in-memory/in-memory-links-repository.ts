@@ -31,7 +31,9 @@ export class InMemoryLinksRepository implements LinksRepositoryInterface {
   }
 
   async findByCode(code: string): Promise<ILink | null> {
-    const link = this.items.find((item) => item.code === code)
+    const link = this.items.find(
+      (item) => item.code === code && item.deletedAt === null,
+    )
 
     if (!link) {
       return null
@@ -58,7 +60,9 @@ export class InMemoryLinksRepository implements LinksRepositoryInterface {
   ): Promise<PaginationResult<ILink>> {
     const { page = 1, pageSize = 10 } = params
 
-    const itemsByUserId = this.items.filter((item) => item.userId === userId)
+    const itemsByUserId = this.items.filter(
+      (item) => item.userId === userId && item.deletedAt === null,
+    )
 
     const items = itemsByUserId.slice((page - 1) * pageSize, page * pageSize)
 
@@ -68,5 +72,30 @@ export class InMemoryLinksRepository implements LinksRepositoryInterface {
       count: itemsByUserId.length,
       data: items,
     }
+  }
+
+  async deleteLink(id: string, userId: string): Promise<ILink | null> {
+    const item = this.items.find(
+      (item) => item.id === id && item.userId === userId,
+    )
+
+    if (!item) return null
+
+    item.deletedAt = new Date()
+
+    return item
+  }
+
+  async findById(id: string, userId: string): Promise<ILink | null> {
+    const item = this.items.find(
+      (item) =>
+        item.id === id && item.userId === userId && item.deletedAt === null,
+    )
+
+    if (!item) {
+      return null
+    }
+
+    return item
   }
 }

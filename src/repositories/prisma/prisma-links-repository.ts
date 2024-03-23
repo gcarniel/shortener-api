@@ -25,6 +25,7 @@ export class PrismaLinksRepository implements LinksRepositoryInterface {
     return await prisma.links.findFirst({
       where: {
         code,
+        deletedAt: null,
       },
     })
   }
@@ -54,6 +55,7 @@ export class PrismaLinksRepository implements LinksRepositoryInterface {
     const linksPromise = prisma.links.findMany({
       where: {
         userId,
+        deletedAt: null,
       },
       take: pageSize,
       skip: (page - 1) * pageSize,
@@ -62,6 +64,7 @@ export class PrismaLinksRepository implements LinksRepositoryInterface {
     const countPromise = prisma.links.count({
       where: {
         userId,
+        deletedAt: null,
       },
     })
 
@@ -73,5 +76,29 @@ export class PrismaLinksRepository implements LinksRepositoryInterface {
       count,
       data: links,
     }
+  }
+
+  async deleteLink(id: string, userId: string): Promise<ILink | null> {
+    const link = await prisma.links.update({
+      where: {
+        id,
+        userId,
+      },
+      data: {
+        deletedAt: new Date(),
+      },
+    })
+
+    return link
+  }
+
+  async findById(id: string, userId: string): Promise<ILink | null> {
+    return await prisma.links.findFirst({
+      where: {
+        id,
+        userId,
+        deletedAt: null,
+      },
+    })
   }
 }
