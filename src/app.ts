@@ -1,8 +1,11 @@
 import fastify from 'fastify'
 import { ZodError } from 'zod'
 import { env } from './env'
+import { linksRoutes } from './http/controllers/links/routes'
 
 export const app = fastify()
+
+app.register(linksRoutes)
 
 app.setErrorHandler((error, _, rep) => {
   if (error instanceof ZodError) {

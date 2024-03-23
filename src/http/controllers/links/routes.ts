@@ -1,8 +1,9 @@
 import { FastifyInstance } from 'fastify'
 import { createLink } from './create-link'
+import { visitLink } from './visit-link'
 
 export async function linksRoutes(app: FastifyInstance) {
-  app.get('/:code', async () => {})
+  app.get('/:code', visitLink)
 
   app.post('/api/links', createLink)
 
