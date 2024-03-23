@@ -3,9 +3,8 @@
 @host = {{hostname}}:{{port}}
 @contentType = application/json
 
-
-### 
-@name = Create Link
+@name = LINKS ROUTES
+### Create Link
 POST http://{{host}}/api/links
 Content-Type: {{contentType}}
 
@@ -13,6 +12,20 @@ Content-Type: {{contentType}}
   "url": "https://vitest.dev/api/expect#not"
 }
 
-###
-@name = Visit Link
+### Visit Link
 GET http://{{host}}/ee7214 
+
+
+
+####################### SEPARA ROTAS 
+@name = USERS ROUTES
+
+### Create User
+POST http://{{host}}/api/users
+Content-Type: {{contentType}}
+
+{
+  "name": "Gabriel Carniel",
+  "email": "gabriel@fakeemail.com",
+  "password": "123456"
+}
