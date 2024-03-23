@@ -1,7 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { CreateLinkUseCase } from '../../../use-cases/links/create-link'
-import { PrismaLinksRepository } from '../../../repositories/prisma/prisma-links-repository'
 import z from 'zod'
+import { makeCreateLink } from '../../../use-cases/links/factories/make-create-link'
 
 export async function createLink(req: FastifyRequest, rep: FastifyReply) {
   const bodySchema = z.object({
@@ -10,8 +9,7 @@ export async function createLink(req: FastifyRequest, rep: FastifyReply) {
 
   const { url } = bodySchema.parse(req.body)
 
-  const linksRepository = new PrismaLinksRepository()
-  const createLink = new CreateLinkUseCase(linksRepository)
+  const createLink = makeCreateLink()
 
   const userId = req.user?.sub
   const { link } = await createLink.execute({ url, userId })
