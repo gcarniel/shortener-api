@@ -7,7 +7,7 @@ import { InvalidUrlError } from './errors/invalid-url-error'
 
 interface LinkUseCaseRequest {
   url: string
-  userId: string | null
+  userId?: string | null
 }
 
 interface LinkUseCaseResponse {
