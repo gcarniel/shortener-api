@@ -15,4 +15,28 @@ export class PrismaLinksRepository implements LinksRepositoryInterface {
       },
     })
   }
+
+  async findByCode(code: string): Promise<ILink | null> {
+    return await prisma.links.findFirst({
+      where: {
+        code,
+      },
+    })
+  }
+
+  async increaseVisits(id: string, visits: number): Promise<number> {
+    const { visits: count } = await prisma.links.update({
+      where: {
+        id,
+      },
+      data: {
+        visits,
+      },
+      select: {
+        visits: true,
+      },
+    })
+
+    return count
+  }
 }
