@@ -20,7 +20,7 @@ export async function listLinks(req: FastifyRequest, rep: FastifyReply) {
 
   const resp = await listLinks.execute({ userId, params })
 
-  return rep.status(201).send({
+  return rep.status(200).send({
     page: resp.page,
     pages: resp.pages,
     count: resp.count,
