@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  cashflow-api:
+    image: bitnami/postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=cashflow
+    volumes:
+      - $HOME/docker_volumes/cashflow/data:/var/lib/postgresql/data
