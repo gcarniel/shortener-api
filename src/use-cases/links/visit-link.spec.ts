@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryLinksRepository } from '../../repositories/in-memory/in-memory-links-repository'
 import { VisitLinkUseCase } from './visit-link'
-import { LinkNotFoundError } from './errors/link-not-found'
+import { LinkNotFoundError } from './errors/link-not-found-error'
 import { InMemoryUsersRepository } from '../../repositories/in-memory/in-memory-users-repository'
 
 describe('Visit Link Use Case', () => {

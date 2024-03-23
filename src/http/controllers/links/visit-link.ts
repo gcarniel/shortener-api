@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import z from 'zod'
-import { LinkNotFoundError } from '../../../use-cases/links/errors/link-not-found'
+import { LinkNotFoundError } from '../../../use-cases/links/errors/link-not-found-error'
 import { makeVisitLink } from '../../../use-cases/links/factories/make-visit-link'
 
 export async function visitLink(req: FastifyRequest, rep: FastifyReply) {

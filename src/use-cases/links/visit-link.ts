@@ -1,6 +1,6 @@
 import { ILink } from '../../interfaces/links/create-link-interface'
 import { LinksRepositoryInterface } from '../../repositories/interfaces/links-repository-interface'
-import { LinkNotFoundError } from './errors/link-not-found'
+import { LinkNotFoundError } from './errors/link-not-found-error'
 
 interface VisitLinkUseCaseRequest {
   code: string
