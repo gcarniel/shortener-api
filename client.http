@@ -61,3 +61,7 @@ Content-Type: {{contentType}}
   "email": "gabriel@fakeemail.com",
   "password": "123456"
 }
+
+### User profile 
+GET http://{{host}}/api/profile
+Authorization: Bearer {{bearer}}
