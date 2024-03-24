@@ -21,6 +21,18 @@ export class PrismaLinksRepository implements LinksRepositoryInterface {
     })
   }
 
+  async save(data: ILink): Promise<ILink> {
+    return await prisma.links.update({
+      where: {
+        id: data.id,
+        userId: data.userId,
+      },
+      data: {
+        url: data.url,
+      },
+    })
+  }
+
   async findByCode(code: string): Promise<ILink | null> {
     return await prisma.links.findFirst({
       where: {

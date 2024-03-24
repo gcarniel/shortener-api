@@ -8,6 +8,7 @@ import {
   PaginationParams,
   PaginationResult,
 } from '../../interfaces/pagination-interface'
+import { env } from '../../env'
 
 export class InMemoryLinksRepository implements LinksRepositoryInterface {
   items: ILink[] = []
@@ -17,7 +18,7 @@ export class InMemoryLinksRepository implements LinksRepositoryInterface {
       id: randomUUID(),
       code: data.code,
       url: data.url,
-      shortUrl: data.shortUrl!,
+      shortUrl: data.shortUrl ?? `${env.BASE_URL_API}/${data.code}`,
       userId: data.userId || null,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -28,6 +29,21 @@ export class InMemoryLinksRepository implements LinksRepositoryInterface {
     this.items.push(newLink)
 
     return newLink
+  }
+
+  async save(data: ILink): Promise<ILink> {
+    const index = this.items.findIndex(
+      (item) =>
+        item.id === data.id &&
+        item.deletedAt === null &&
+        item.userId === data.userId,
+    )
+
+    if (index >= 0) {
+      this.items[index].url = data.url
+      this.items[index].updatedAt = new Date()
+    }
+    return this.items[index]
   }
 
   async findByCode(code: string): Promise<ILink | null> {
