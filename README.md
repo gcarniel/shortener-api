@@ -30,7 +30,7 @@ Configurar o arquivo `.env`. Dentro do projeto existe um de exemplo `.env.exampl
 5. `npm run test` Para rodar os testes
 6. `npm run test:watch` Para rodar os teste em modo watch
 
-## 🛠️ Ferraments
+## 🛠️ Ferramentas
 
 1. `zod` Validação de dados
 2. `prisma` ORM para gerenciar banco de dados
@@ -41,19 +41,25 @@ Configurar o arquivo `.env`. Dentro do projeto existe um de exemplo `.env.exampl
 ## 🪧 Rotas
 
 Todas as rotas estão abaixo, porém no projeto tem um arquivo `client.http` com as 
-rotas mapeadas e prontas para fazer testes locais, assim como `postman` ou `insomnia`.
+rotas mapeadas e prontas para fazer testes locais, assim como é possível fazer no `postman` ou `insomnia`.
 
 ### 🧛🏻‍♂️ Usuários
 `POST` `/api/users` - Criar um usuário.
+
 `POST` `/api/auth` - Autenticação de usuário
 
 ### 📬 Links
 `GET`    `/:code`  - Busca um link encurtado e redireciona o usuário.
+
 `POST`   `/api/links`  - Cria um link encurtado na aplicação.
+
 `GET`    `/api/links`  - Busca paginada de links do usuário autenticado.
+
 `DELETE` `/api/links/:id`  - Deleta um link do usuário autenticado.
+
 `PATCH`  `/api/links/:id`  - Altera um link do usuário autenticado.
-`GET`    `/api/links/metris/:code`  - Busca um link encurtado e redireciona o usuário.
+
+`GET`    `/api/links/metris/:code`  - Busca as métricas de uma URL encurtada.
 
 ## 📝 Licença
 Esse projeto está sob licença MIT.
