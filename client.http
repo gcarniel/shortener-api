@@ -3,9 +3,10 @@
 @host = {{hostname}}:{{port}}
 @contentType = application/json
 
-@bearer = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzkwMWNiNS1kNWY5LTQ5NGMtOTMyMy1hMGJmYzk5YTJhMjMiLCJpYXQiOjE3MTEyMTEzMDh9.KR9tMpInmbDJw7SVoYmysuxoUzt0efajo4abvpeCLNM
+@bearer = COLE AQUI O TOKEN DE AUTENTICACAO
 
 @name = LINKS ROUTES
+
 ### Create Link
 POST http://{{host}}/api/links
 Content-Type: {{contentType}}
@@ -16,7 +17,7 @@ Authorization: Bearer {{bearer}}
 }
 
 ### Visit Link
-GET http://{{host}}/:code 
+GET http://{{host}}/:code
 
 ### List links by user
 GET http://{{host}}/api/links?page=1&pageSize=10
@@ -26,6 +27,17 @@ Authorization: Bearer {{bearer}}
 DELETE  http://{{host}}/api/links/:id
 Authorization: Bearer {{bearer}}
 
+### Update link by user
+PATCH http://{{host}}/api/links/:id
+Authorization: Bearer {{bearer}}
+
+{
+  "url": "https://google.com.br"
+}
+
+### Metrics links 
+GET http://{{host}}/api/links/metris/:code
+Authorization: Bearer {{bearer}}
 
 
 ####################### SEPARA ROTAS ####################### 
