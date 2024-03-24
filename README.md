@@ -4,6 +4,7 @@
 
 - [x] Criar usuário.
 - [x] Autenticar usuário.
+- [x] Buscar perfil do usuário.
 - [x] Criar URLs encurtado.
 - [x] Contabilizar visitas em URLs encurtados.
 - [x] Listar URLs de um usuário autenticado.
@@ -47,6 +48,8 @@ rotas mapeadas e prontas para fazer testes locais, assim como é possível fazer
 `POST` `/api/users` - Criar um usuário.
 
 `POST` `/api/auth` - Autenticação de usuário
+
+`GET` `api/profile` - Buscar dados do usuário.
 
 ### 📬 Links
 `GET`    `/:code`  - Busca um link encurtado e redireciona o usuário.
