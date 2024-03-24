@@ -1,7 +1,7 @@
 import { ILink } from '../../interfaces/links/create-link-interface'
 import { LinksRepositoryInterface } from '../../repositories/interfaces/links-repository-interface'
 import { UsersRepositoryInterface } from '../../repositories/interfaces/users-repository-interface'
-import { LinkNotAllowedError } from './errors/link-not-allowed-error'
+import { UserNotFoundError } from '../users/errors/user-not-found-error'
 import { LinkNotFoundError } from './errors/link-not-found-error'
 
 interface deleteLinkUseCaseRequest {
@@ -26,7 +26,7 @@ export class DeleteLinkUseCase {
     const user = await this.usersRepository.findById(userId)
 
     if (!user) {
-      throw new LinkNotAllowedError()
+      throw new UserNotFoundError()
     }
 
     const link = await this.linksRepository.findById(id, user.id)

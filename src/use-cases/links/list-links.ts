@@ -5,7 +5,7 @@ import {
 } from '../../interfaces/pagination-interface'
 import { LinksRepositoryInterface } from '../../repositories/interfaces/links-repository-interface'
 import { UsersRepositoryInterface } from '../../repositories/interfaces/users-repository-interface'
-import { LinkNotAllowedError } from './errors/link-not-allowed-error'
+import { UserNotFoundError } from '../users/errors/user-not-found-error'
 
 export interface ListLinksUseCaseRequest {
   userId: string
@@ -27,7 +27,7 @@ export class ListLinksUseCase {
     const user = await this.usersRepository.findById(userId)
 
     if (!user) {
-      throw new LinkNotAllowedError()
+      throw new UserNotFoundError()
     }
 
     const data = await this.linksRepository.listLinksByUserId(user.id, params)
