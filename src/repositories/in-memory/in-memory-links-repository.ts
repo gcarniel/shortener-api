@@ -23,7 +23,7 @@ export class InMemoryLinksRepository implements LinksRepositoryInterface {
       createdAt: new Date(),
       updatedAt: new Date(),
       deletedAt: null,
-      visits: 0,
+      visits: data.visits ?? 0,
     }
 
     this.items.push(newLink)

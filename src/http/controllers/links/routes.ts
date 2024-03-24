@@ -6,9 +6,15 @@ import { listLinks } from './list-links'
 import { verifyJwt } from '../../middlewares/verify-jwt'
 import { deleteLink } from './delete-link'
 import { updateLink } from './update-link'
+import { metricsLink } from './metric-link'
 
 export async function linksRoutes(app: FastifyInstance) {
   app.get('/:code', visitLink)
+  app.get(
+    '/api/links/metris/:code',
+    { onRequest: [verifyJwtOptionalUser] },
+    metricsLink,
+  )
 
   app.post('/api/links', { onRequest: [verifyJwtOptionalUser] }, createLink)
 
