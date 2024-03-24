@@ -4,7 +4,6 @@ import { LinkNotFoundError } from './errors/link-not-found-error'
 
 interface VisitLinkUseCaseRequest {
   code: string
-  userId?: string | null
 }
 
 interface VisitLinkUseCaseResponse {
@@ -15,15 +14,10 @@ export class VisitLinkUseCase {
 
   async execute({
     code,
-    userId,
   }: VisitLinkUseCaseRequest): Promise<VisitLinkUseCaseResponse> {
     const link = await this.linksRepository.findByCode(code)
 
     if (!link) {
-      throw new LinkNotFoundError()
-    }
-
-    if (link.userId && link.userId !== userId) {
       throw new LinkNotFoundError()
     }
 
